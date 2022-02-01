@@ -1,34 +1,24 @@
 import Layout from '../../components/template/Layout';
-import useApiData from '../../data/hook/UseApiData';
+import { useRouter } from 'next/router';
 
 interface coinProps {
   coin: any;
-  id: string;
 }
 
 export default function Coin(props: coinProps) {
-  const formatCurrencyConfig = {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    currencyDisplay: 'symbol',
-  };
-
-  const formatPercentConfig = {
-    style: 'percent',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  };
-
-  const formatCurrency = new Intl.NumberFormat('us-US', formatCurrencyConfig);
-  const formatPercent = new Intl.NumberFormat('us-US', formatPercentConfig);
+  // get 'id' from url
+  const router = useRouter();
+  const {
+    query: { id },
+  } = router;
+  console.log(id);
 
   return (
     <Layout>
       <div
         className={`flex flex-col text-white justify-center items-center h-full w-full`}
       >
-        <h1 className="text-base font-bold">{props.id}</h1>
+        <h1 className="text-base font-bold">{id}</h1>
         <img
           src={`https://www.cryptocompare.com${props.coin.IMAGEURL}`}
           className="mt-2 w-36 h-36"
@@ -53,7 +43,6 @@ export async function getServerSideProps(context: any) {
   return {
     props: {
       coin: coins,
-      id: id,
     },
   };
 }

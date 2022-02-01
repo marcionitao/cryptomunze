@@ -16,10 +16,7 @@ export default function MenuItems(props: MenuItemsProps) {
   };
 
   return (
-    <li
-      // onClick={props.onClick}
-      className={`cursor-pointer border border-gray-500 m-2`}
-    >
+    <li className={`cursor-pointer border-b-4 border-indigo-500 m-2 mb-10`}>
       <Link href={props.url}>{renderizarLinks()}</Link>
     </li>
   );
