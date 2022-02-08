@@ -30,37 +30,35 @@ export default function MenuMobile() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        {ref => (
-          <div className="sm:hidden" id="mobile-menu">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/">
-                <a
-                  className="block px-3 py-2 text-base font-medium text-white rounded-md hover:bg-gray-700"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </Link>
+        <div className="sm:hidden" id="mobile-menu">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link href="/">
+              <a
+                className="block px-3 py-2 text-base font-medium text-white rounded-md hover:bg-gray-700"
+                aria-current="page"
+              >
+                Home
+              </a>
+            </Link>
 
-              <Link href="/list">
-                <a
-                  href="#"
-                  className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                >
-                  List Coins
-                </a>
-              </Link>
-              <Link href="/about">
-                <a
-                  href="#"
-                  className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                >
-                  About
-                </a>
-              </Link>
-            </div>
+            <Link href="/list">
+              <a
+                href="#"
+                className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+              >
+                List Coins
+              </a>
+            </Link>
+            <Link href="/about">
+              <a
+                href="#"
+                className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+              >
+                About
+              </a>
+            </Link>
           </div>
-        )}
+        </div>
       </Transition>
     </div>
   );

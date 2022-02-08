@@ -9,7 +9,7 @@ export default function Layout(props: LayoutProps) {
     <div className={`flex h-full sm:h-screen w-full flex-col`}>
       <MenuNav />
       {/* conteudo das paginas */}
-      <div className={`flex justify-center items-center mt-5 sm:mt-20 mr-5`}>
+      <div className={`flex justify-center items-center sm:mt-20 mr-4`}>
         {props.children}
       </div>
     </div>

@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
-import useApiData from '../data/hook/UseApiData';
+import ApiContext from '../data/context/ApiContext';
 
 export default function Coins() {
-  // use Hooks para partilhar os dados entre os componentes
-  const { coins } = useApiData();
+  // obtendo o context dos dados entre os componentes
+  const { coins } = useContext(ApiContext);
+  // const context = useContext(ApiContext);
 
   const formatCurrencyConfig = {
     style: 'currency',
@@ -32,17 +33,17 @@ export default function Coins() {
             className={`flex flex-row border border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
           >
             <div className="flex flex-col w-2/3 p-1">
-              <span className="text-xs truncate text-yellow-300">
+              <span className="text-xs text-yellow-300 truncate">
                 {coin.CoinInfo.FullName}
               </span>
               <img
                 src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
-                className="mt-2 w-16 h-16"
+                className="w-16 h-16 mt-2"
                 title={coin.CoinInfo.FullName}
               />
             </div>
             <div className={`flex flex-col justify-center items-center w-full`}>
-              <span className="text-base text-blue-400 font-bold">
+              <span className="text-base font-bold text-blue-400">
                 {coin.CoinInfo.Name}
               </span>
               <span className="text-xs text-gray-200">
@@ -60,7 +61,7 @@ export default function Coins() {
                 </span>
               )}
 
-              <p className="text-xxs text-yellow-200">
+              <p className="text-yellow-200 text-xxs">
                 {moment(coin.RAW.USD.LASTUPDATE * 1000).fromNow()}
               </p>
             </div>

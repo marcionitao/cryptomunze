@@ -10,13 +10,13 @@ export default function MenuItems(props: MenuItemsProps) {
   const renderizarLinks = () => {
     return (
       <a className={`flex ${props.className}`}>
-        <span className={`text-xl text-white font-light`}>{props.texto}</span>
+        <span className={`text-base text-white font-light`}>{props.texto}</span>
       </a>
     );
   };
 
   return (
-    <li className={`cursor-pointer border-b-4 border-indigo-500 m-2 mb-10`}>
+    <li className={`cursor-pointer border-b-4 border-indigo-500 m-3 mb-10`}>
       <Link href={props.url}>{renderizarLinks()}</Link>
     </li>
   );

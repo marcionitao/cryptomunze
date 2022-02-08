@@ -34,6 +34,11 @@ body {
   background-color: transparent !important;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 a {
   color: inherit;
   text-decoration: none;
