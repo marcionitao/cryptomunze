@@ -1,22 +1,22 @@
 import Link from 'next/link';
 
 interface MenuItemsProps {
-  url?: string;
+  url: string;
   texto: string;
-  className?: string;
-  onClick?: (event: any) => void;
+  className: string;
 }
 export default function MenuItems(props: MenuItemsProps) {
+  //
   const renderizarLinks = () => {
     return (
-      <a className={`flex ${props.className}`}>
-        <span className={`text-base text-white font-light`}>{props.texto}</span>
+      <a className={`flex ${props.className} `}>
+        <span className={`text-base font-light`}>{props.texto}</span>
       </a>
     );
   };
 
   return (
-    <li className={`cursor-pointer border-b-4 border-indigo-500 m-3 mb-10`}>
+    <li className={`cursor-pointer m-3`}>
       <Link href={props.url}>{renderizarLinks()}</Link>
     </li>
   );
