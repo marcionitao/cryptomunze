@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Coins from '../components/Coins';
 import Layout from '../components/template/Layout';
-import { coins } from '../mock/coins';
 
 interface homeProps {
   moedas?: any;

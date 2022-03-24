@@ -7,7 +7,7 @@ interface LogoProps {
 
 export default function Logo(props: LogoProps) {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <Link href="/">
         <img
           src="/images/logo.png"
@@ -15,7 +15,7 @@ export default function Logo(props: LogoProps) {
         />
       </Link>
       <Link href="/">
-        <h1 className="text-white text-2xl cursor-pointer">{props.titulo}</h1>
+        <h1 className="text-2xl text-white cursor-pointer">{props.titulo}</h1>
       </Link>
     </div>
   );

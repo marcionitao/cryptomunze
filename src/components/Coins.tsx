@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
+import { useContext } from 'react';
 import ApiContext from '../data/context/ApiContext';
 
-export default function Coins() {
+export default function CoinsComponent() {
   // obtendo o context dos dados entre os componentes
   const { coins } = useContext(ApiContext);
   // const context = useContext(ApiContext);
@@ -25,14 +25,14 @@ export default function Coins() {
   const formatPercent = new Intl.NumberFormat('us-US', formatPercentConfig);
 
   const coinsRender = () => {
-    return coins.map((coin: any, index) => {
+    return coins.map((coin: any, index: number) => {
       return (
         <Link href={`/coin/${coin.CoinInfo.Name}`} key={index}>
           <div
             key={index}
             className={`flex flex-row border border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
           >
-            <div className="flex flex-col w-2/3 p-1">
+            <div className="flex flex-col w-1/2 p-1">
               <span className="text-xs text-yellow-300 truncate">
                 {coin.CoinInfo.FullName}
               </span>
@@ -47,16 +47,16 @@ export default function Coins() {
                 {coin.CoinInfo.Name}
               </span>
               <span className="text-xs text-gray-200">
-                {formatCurrency.format(coin.RAW.USD.PRICE)}
+                {coin.DISPLAY.USD.PRICE}
               </span>
               {coin.RAW.USD.CHANGEPCT24HOUR < 0 ? (
                 <span className="text-xs text-red-600">
-                  {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)}{' '}
+                  {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &darr;
                 </span>
               ) : (
                 <span className="text-xs text-green-500">
-                  {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)}{' '}
+                  {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &uarr;
                 </span>
               )}

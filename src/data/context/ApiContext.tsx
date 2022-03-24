@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
 interface AppContextProps {
-  coins?: any;
+  coins: any;
 }
 
 const ApiContext = createContext<AppContextProps>({
@@ -10,13 +10,14 @@ const ApiContext = createContext<AppContextProps>({
 
 export function ApiProvider({ children }) {
   // request api
-  const api: string = process.env.NEXT_PUBLIC_KEY_API;
-  const currency: string = 'USD';
-  const url: string = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=${currency}&api_key=${api}`;
+  const api = process.env.NEXT_PUBLIC_KEY_API;
+  const currency = 'USD';
+  const url = `https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=${currency}&api_key=${api}`;
 
   const myApi = async () => {
     const response = await fetch(url);
     const data = await response.json();
+    // console.log(data);
     return data['Data'];
   };
 
@@ -33,7 +34,6 @@ export function ApiProvider({ children }) {
   useEffect(() => {
     const timer = setInterval(() => {
       myApi().then(data => {
-        // console.log(data);
         setCoins(data);
       });
     }, 10000);

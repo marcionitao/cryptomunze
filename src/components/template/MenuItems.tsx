@@ -10,7 +10,7 @@ export default function MenuItems(props: MenuItemsProps) {
   const renderizarLinks = () => {
     return (
       <a className={`flex ${props.className} `}>
-        <span className={`text-base font-light`}>{props.texto}</span>
+            <span className={`text-base font-light`}>{props.texto}</span>
       </a>
     );
   };
