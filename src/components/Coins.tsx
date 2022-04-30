@@ -30,7 +30,7 @@ export default function CoinsComponent() {
         <Link href={`/coin/${coin.CoinInfo.Name}`} key={index}>
           <div
             key={index}
-            className={`flex flex-row border border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
+            className={`flex flex-row border shadow-md border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
           >
             <div className="flex flex-col w-1/2 p-1">
               <span className="text-xs text-yellow-300 truncate">

@@ -13,7 +13,43 @@ export default function Coin({ coin }) {
   //
   return (
     <Layout>
-      <div className={`flex flex-wrap`}>
+      <div className="text-2xl">
+        <a
+          href={overview}
+          target="_blank"
+          rel="noreferrer"
+          className="flex flex-col items-center rounded-sm shadow-sm sm:flex-row sm:max-w-xl border-gray-600 cursor-pointer"
+        >
+          <img
+            className="object-cover w-full h-44 rounded-t-lg sm:h-auto sm:w-48 sm:rounded-none sm:rounded-l-lg"
+            src={`https://www.cryptocompare.com${coin.IMAGEURL}`}
+            alt=""
+          />
+          <div className="flex flex-col justify-between p-4 leading-normal">
+            <p className="mb-2 text-2xl font-bold tracking-tight text-white">
+              {id}
+            </p>
+            <p className="mb-3 font-normal text-gray-400">{coin.PRICE}</p>
+            <p className="mb-3 font-normal text-gray-400">
+              {coin.CIRCULATINGSUPPLY}
+            </p>
+            <p className="mb-3 font-normal text-gray-400">
+              {coin.TOTALVOLUME24H}
+            </p>
+            <p className="mb-3 font-normal text-gray-400">{coin.MKTCAP}</p>
+            {coin.CHANGEPCT24HOUR < 0 ? (
+              <p className="text-red-600 mb-3 font-bold">
+                {coin.CHANGEPCT24HOUR} &darr;
+              </p>
+            ) : (
+              <p className="text-green-500 mb-3 font-bold">
+                {coin.CHANGEPCT24HOUR} &uarr;
+              </p>
+            )}
+          </div>
+        </a>
+      </div>
+      {/* <div className={`flex flex-wrap`}>
         <div className="w-full m-4">
           <legend className="text-base font-bold text-white border-b-2 border-indigo-500 sm:pb-2 sm:text-xl">
             {id}
@@ -46,7 +82,7 @@ export default function Coin({ coin }) {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 }
