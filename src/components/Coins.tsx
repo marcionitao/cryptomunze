@@ -33,12 +33,12 @@ export default function CoinsComponent() {
             className={`flex flex-row border shadow-md border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
           >
             <div className="flex flex-col w-1/2 p-1">
-              <span className="text-xs text-yellow-300 truncate">
+              <span className="text-base text-yellow-300 truncate">
                 {coin.CoinInfo.FullName}
               </span>
               <img
                 src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
-                className="w-16 h-16 mt-2"
+                className="object-cover w-16 h-16 mt-2"
                 title={coin.CoinInfo.FullName}
               />
             </div>
@@ -46,22 +46,22 @@ export default function CoinsComponent() {
               <span className="text-base font-bold text-blue-400">
                 {coin.CoinInfo.Name}
               </span>
-              <span className="text-xs text-gray-200">
+              <span className="text-base text-gray-200">
                 {coin.DISPLAY.USD.PRICE}
               </span>
               {coin.RAW.USD.CHANGEPCT24HOUR < 0 ? (
-                <span className="text-xs text-red-600">
+                <span className="text-base text-red-600">
                   {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &darr;
                 </span>
               ) : (
-                <span className="text-xs text-green-500">
+                <span className="text-base text-green-500">
                   {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &uarr;
                 </span>
               )}
 
-              <p className="text-yellow-200 text-xxs">
+              <p className="text-yellow-200 text-xs truncate">
                 {moment(coin.RAW.USD.LASTUPDATE * 1000).fromNow()}
               </p>
             </div>
