@@ -8,7 +8,6 @@ export default function Coin({ coin }) {
   const { id } = router.query;
   // console.log(router.query);
   const overview = `https://www.cryptocompare.com/coins/${id}/overview`;
-
   //
   return (
     <Layout>
@@ -73,7 +72,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${id}&tsyms=${currency}`,
   );
   const data = await response.json();
-  console.log(data.DISPLAY);
+  // console.log(data.DISPLAY);
   const coins = data.DISPLAY[id][currency];
   return {
     props: {

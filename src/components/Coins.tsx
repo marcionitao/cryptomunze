@@ -8,12 +8,12 @@ export default function CoinsComponent() {
   const { coins } = useContext(ApiContext);
   // const context = useContext(ApiContext);
 
-  const formatCurrencyConfig = {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    currencyDisplay: 'symbol',
-  };
+  // const formatCurrencyConfig = {
+  //   style: 'currency',
+  //   currency: 'USD',
+  //   minimumFractionDigits: 2,
+  //   currencyDisplay: 'symbol',
+  // };
 
   const formatPercentConfig = {
     style: 'percent',
@@ -21,47 +21,41 @@ export default function CoinsComponent() {
     maximumFractionDigits: 2,
   };
 
-  const formatCurrency = new Intl.NumberFormat('us-US', formatCurrencyConfig);
+  // const formatCurrency = new Intl.NumberFormat('us-US', formatCurrencyConfig);
   const formatPercent = new Intl.NumberFormat('us-US', formatPercentConfig);
 
-  const coinsRender = () => {
+  const render = () => {
     return coins.map((coin: any, index: number) => {
       return (
         <Link href={`/coin/${coin.CoinInfo.Name}`} key={index}>
           <div
             key={index}
-            className={`flex flex-row border shadow-md border-gray-600 h-32 w-48 b-2 ml-2 rounded cursor-pointer`}
+            className={`flex flex-col items-center ml-2 p-2 rounded-sm border shadow-sm sm:flex-row  border-gray-700 cursor-pointer`}
           >
-            <div className="flex flex-col w-1/2 p-1">
-              <span className="text-base text-yellow-300 truncate">
+            <img
+              className="object-cover w-24 h-24 p-1 rounded-t-lg sm:h-24 sm:w-24 sm:rounded-none sm:rounded-l-lg"
+              src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
+              title={coin.CoinInfo.FullName}
+            />
+            <div className="flex flex-col justify-between leading-normal w-42 items-center truncate">
+              <p className="mb-1 text-xs md:text-md font-bold text-white ">
                 {coin.CoinInfo.FullName}
-              </span>
-              <img
-                src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
-                className="object-cover w-16 h-16 mt-2"
-                title={coin.CoinInfo.FullName}
-              />
-            </div>
-            <div className={`flex flex-col justify-center items-center w-full`}>
-              <span className="text-base font-bold text-blue-400">
-                {coin.CoinInfo.Name}
-              </span>
-              <span className="text-base text-gray-200">
+              </p>
+              <p className="mb-1 font-normal text-gray-400">
                 {coin.DISPLAY.USD.PRICE}
-              </span>
+              </p>
               {coin.RAW.USD.CHANGEPCT24HOUR < 0 ? (
-                <span className="text-base text-red-600">
+                <p className="mb-1 text-sm text-red-600 font-bold">
                   {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &darr;
-                </span>
+                </p>
               ) : (
-                <span className="text-base text-green-500">
+                <p className="mb-1 text-sm text-green-500 font-bold">
                   {formatPercent.format(coin.DISPLAY.USD.CHANGEPCT24HOUR / 100)}{' '}
                   &uarr;
-                </span>
+                </p>
               )}
-
-              <p className="text-yellow-200 text-xs truncate">
+              <p className="mb-1 font-normal w-42 text-xs text-yellow-300 truncate">
                 {moment(coin.RAW.USD.LASTUPDATE * 1000).fromNow()}
               </p>
             </div>
@@ -72,8 +66,11 @@ export default function CoinsComponent() {
   };
 
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-2`}>
-      {coinsRender()}
+    <div
+      className={`grid grid-cols-1 mt-10 sm:mt-1 sm:grid-cols-3 lg:grid-cols-5 gap-2`}
+    >
+      {/* {coinsRender()} */}
+      {render()}
     </div>
   );
 }
