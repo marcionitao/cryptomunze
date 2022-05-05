@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 interface LogoProps {
   className?: string;
-  titulo?: string;
+  titulo: string;
+  src: string;
 }
 
 export default function Logo(props: LogoProps) {
@@ -10,7 +11,8 @@ export default function Logo(props: LogoProps) {
     <div className="flex items-center justify-center">
       <Link href="/">
         <img
-          src="/images/logo.png"
+          data-testid="image-logo"
+          src={props.src}
           className={`h-14 w-14 rounded-full cursor-pointer ${props.className}`}
         />
       </Link>

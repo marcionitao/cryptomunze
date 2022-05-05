@@ -1,10 +1,11 @@
 import Link from 'next/link';
 
-export interface MenuItemsProps {
+interface MenuItemsProps {
   url: string;
   texto: string;
   className?: string;
 }
+
 export default function MenuItems(props: MenuItemsProps) {
   // simnplificando o props
   const { url, texto, className } = props;

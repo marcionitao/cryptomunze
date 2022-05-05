@@ -1,10 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import MenuItems from '../src/components/template/MenuItems';
 
+const MenuItemsProps = {
+  url: 'http://localhost/about',
+  texto: 'About',
+  className: 'mb-2',
+};
+
+const renderMenuItems = () => render(<MenuItems {...MenuItemsProps} />);
+
 describe('MenuItems', () => {
   it('should render a link of items ', () => {
     // renderiza o componente e passar props
-    render(<MenuItems url={'/'} texto={'Home'} />);
+    renderMenuItems();
 
     // criando uma referencia a tag (a) link
     const link = screen.getByRole('link');
@@ -14,9 +22,10 @@ describe('MenuItems', () => {
 
   it('should render the items from list', () => {
     // renderiza o componente e passar props
-    render(<MenuItems url={'/'} texto={'Home'} />);
+    renderMenuItems();
 
-    // espero que o url e texto existam
-    expect(screen.getByText('Home')).toBeInTheDocument();
+    // verifica se o "texto" e "url" está renderizado corretamente no DOM
+    expect(screen.getByText(new RegExp(MenuItemsProps.texto, 'i'))).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveProperty('href', MenuItemsProps.url);
   });
 });

@@ -12,7 +12,7 @@ export default function MenuNav() {
   return (
     <nav className="flex justify-between">
       <div>
-        <Logo titulo="CrypoMunze" className="m-2" />
+        <Logo titulo="CrypoMunze" className="m-2" src="./images/logo.png" />
       </div>
       <ul className="justify-end flex-grow hidden m-1 sm:flex">
         <MenuItems
@@ -23,16 +23,12 @@ export default function MenuNav() {
         <MenuItems
           url="/list"
           texto="List Coins"
-          className={
-            router.pathname == '/list' ? `${itemAtivo}` : `${itemInativo}`
-          }
+          className={router.pathname == '/list' ? `${itemAtivo}` : `${itemInativo}`}
         />
         <MenuItems
           url="/about"
           texto="About"
-          className={
-            router.pathname == '/about' ? `${itemAtivo}` : `${itemInativo}`
-          }
+          className={router.pathname == '/about' ? `${itemAtivo}` : `${itemInativo}`}
         />
       </ul>
       <MenuMobile />
