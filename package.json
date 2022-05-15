@@ -7,6 +7,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:unit": "jest --config=jest-unit.config.js",
+    "test:integration": "jest --config=jest-integration.config.js",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
@@ -20,6 +22,7 @@
     "react-router-dom": "^6.2.2"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "13.5.0",

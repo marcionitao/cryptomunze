@@ -8,7 +8,7 @@ interface homeProps {
 
 export default function Home(props: homeProps) {
   return (
-    <div>
+    <div data-testid="coin-list">
       <Head>
         <title>CrypoMunze</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

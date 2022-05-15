@@ -1,10 +1,15 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import MenuItems from '../src/components/template/MenuItems';
 
 const MenuItemsProps = {
-  url: 'http://localhost/about',
-  texto: 'About',
-  className: 'mb-2',
+  url: 'http://localhost/',
+  texto: 'Home',
+  className: 'text-yellow-50 border-b-4 border-yellow-500',
 };
 
 const renderMenuItems = () => render(<MenuItems {...MenuItemsProps} />);
