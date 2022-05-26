@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 import MenuItems from '../src/components/template/MenuItems';
 
 const MenuItemsProps = {

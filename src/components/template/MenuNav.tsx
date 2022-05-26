@@ -11,7 +11,7 @@ export default function MenuNav() {
 
   //
   return (
-    <nav className="flex justify-between">
+    <nav className="flex justify-between" data-testid="menu-nav">
       <div>
         <Logo titulo="CrypoMunze" className="m-2" src="./images/logo.png" />
       </div>

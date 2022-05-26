@@ -7,7 +7,11 @@ import { render, screen } from '@testing-library/react';
 import Home from '../src/pages/index';
 
 describe('CoinList', () => {
-  jest.mock('next/router');
+  jest.mock('next/router', () => ({
+    useRouter: () => ({
+      pathname: '/',
+    }),
+  }));
 
   it('should render Coin List', async () => {
     render(<Home />);
