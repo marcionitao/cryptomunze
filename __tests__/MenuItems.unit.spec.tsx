@@ -25,7 +25,7 @@ describe('MenuItems', () => {
     expect(link).toBeInTheDocument();
   });
 
-  it('should render the items from list', () => {
+  it('should render the items from list of links', () => {
     // renderiza o componente e passar props
     renderMenuItems();
 

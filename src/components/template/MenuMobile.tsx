@@ -1,13 +1,13 @@
-import { IconFechar, IconHamburger } from '../icons/myIcons';
-import React, { useState } from 'react';
 import { Transition } from '@headlessui/react'; // <- https://headlessui.dev/react/transition
 import Link from 'next/link';
+import React, { useState } from 'react';
+import { IconFechar, IconHamburger } from '../icons/myIcons';
 
 export default function MenuMobile() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div data-testid="menu-mobile">
       <div className="flex mt-2 mr-2 sm:hidden">
         <button
           type="button"
@@ -22,6 +22,7 @@ export default function MenuMobile() {
         </button>
       </div>
       <Transition
+        data-testid="menu-transition"
         show={isOpen}
         enter="transition ease-out duration-100 transform"
         enterFrom="opacity-0 scale-95"
