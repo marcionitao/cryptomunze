@@ -26,7 +26,9 @@ describe('MenuMobile', () => {
 
     const button = screen.getByRole('button', { name: 'Open main menu' });
 
+    // show the transition menu mobile
     await fireEvent.click(button);
     expect(screen.getByTestId('menu-transition')).toBeInTheDocument();
+    expect(screen.getByTestId('menu-transition')).toBeEnabled();
   });
 });
