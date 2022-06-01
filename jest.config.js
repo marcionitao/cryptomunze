@@ -15,6 +15,7 @@ const customJestConfig = {
   testEnvironment: 'jsdom',
   collectCoverageFrom: [
     '<rootDir>/src/components/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/data/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/pages/**/*.{js,jsx,ts,tsx}',
   ],
   moduleNameMapper: {
