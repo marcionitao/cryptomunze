@@ -1,8 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import MenuMobile from '../src/components/template/MenuMobile';
 

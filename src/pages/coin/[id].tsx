@@ -16,36 +16,24 @@ export default function Coin({ coin }) {
           href={overview}
           target="_blank"
           rel="noreferrer"
-          className="flex flex-col items-center rounded-sm shadow-sm sm:flex-row sm:max-w-xl border-gray-600 cursor-pointer"
+          className="flex flex-col items-center border-gray-600 rounded-sm shadow-sm cursor-pointer sm:flex-row sm:max-w-xl"
         >
           <img
-            className="object-cover h-44 rounded-t-lg sm:h-auto w-48 sm:w-72 sm:rounded-none sm:rounded-l-lg"
+            className="object-cover w-48 rounded-t-lg h-44 sm:h-auto sm:w-72 sm:rounded-none sm:rounded-l-lg"
             src={`https://www.cryptocompare.com${coin.IMAGEURL}`}
             alt=""
           />
-          <div className="flex flex-col justify-between items-center sm:items-start p-5 leading-normal">
-            <p className="mb-2 text-3xl font-bold tracking-tight text-white">
-              {id}
-            </p>
-            <p className="mb-3 font-normal text-yellow-400 text-2xl">
-              {coin.PRICE}
-            </p>
-            <p className="mb-3 font-normal text-gray-400 text-2xl">
-              {coin.CIRCULATINGSUPPLY}
-            </p>
-            <p className="mb-3 font-normal text-gray-400 text-2xl">
-              {coin.TOTALVOLUME24H}
-            </p>
-            <p className="mb-3 font-normal text-gray-400 text-2xl">
-              {coin.MKTCAP}
-            </p>
+          <div className="flex flex-col items-center justify-between p-5 leading-normal sm:items-start">
+            <p className="mb-2 text-3xl font-bold tracking-tight text-white">{id}</p>
+            <p className="mb-3 text-2xl font-normal text-yellow-400">{coin.PRICE}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.CIRCULATINGSUPPLY}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.TOTALVOLUME24H}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.MKTCAP}</p>
             {/* ... */}
             {coin.CHANGEPCT24HOUR < 0 ? (
-              <p className="text-red-600 mb-3 font-bold text-2xl">
-                {coin.CHANGEPCT24HOUR} &darr;
-              </p>
+              <p className="mb-3 text-2xl font-bold text-red-600">{coin.CHANGEPCT24HOUR} &darr;</p>
             ) : (
-              <p className="text-green-500 mb-3 font-bold text-2xl">
+              <p className="mb-3 text-2xl font-bold text-green-500">
                 {coin.CHANGEPCT24HOUR} &uarr;
               </p>
             )}

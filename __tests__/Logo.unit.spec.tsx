@@ -1,8 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Logo from '../src/components/template/Logo';
 
@@ -18,6 +13,7 @@ describe('Logo', () => {
   it('should render Logo component propers', () => {
     // renderiza o componente Logo com props
     renderLogo();
+    // screen.logTestingPlaygroundURL();
     // verifica se o titulo está renderizado corretamente no DOM
     expect(screen.getByText(new RegExp(LogoProps.titulo, 'i'))).toBeInTheDocument();
     // espero que o elemeto com o id="image-logo" contenha a imagem do produto na propriedade "src"

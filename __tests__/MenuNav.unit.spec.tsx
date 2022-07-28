@@ -1,8 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import MenuNav from '../src/components/template/MenuNav';
 
@@ -21,8 +16,10 @@ describe('MenuNav', () => {
     expect(screen.getByTestId('menu-nav')).toBeInTheDocument();
   });
 
-  it('should MenuItems called with prop url, texto and className', () => {
+  it('should called MenuItems with prop url, texto and className', () => {
     render(<MenuNav />);
+
+    //console.log(mockMenuItems.mock.calls);
 
     expect(mockMenuItems).toHaveBeenLastCalledWith(
       expect.objectContaining({

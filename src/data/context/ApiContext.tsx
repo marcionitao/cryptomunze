@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-interface AppContextProps {
+export interface AppContextProps {
   coins: any;
 }
 
@@ -17,7 +17,7 @@ export function ApiProvider({ children }) {
   const myApi = async () => {
     const response = await fetch(url);
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     return data['Data'];
   };
 
