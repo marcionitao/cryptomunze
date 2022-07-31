@@ -20,9 +20,7 @@ export default function MenuItems(props: MenuItemsProps) {
 
   return (
     <li className={`cursor-pointer m-3`}>
-      <Link href={url} passHref>
-        {renderizarLinks()}
-      </Link>
+      <Link href={url}>{renderizarLinks()}</Link>
     </li>
   );
 }

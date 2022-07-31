@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Layout from '../../components/template/Layout';
 
@@ -18,11 +19,15 @@ export default function Coin({ coin }) {
           rel="noreferrer"
           className="flex flex-col items-center border-gray-600 rounded-sm shadow-sm cursor-pointer sm:flex-row sm:max-w-xl"
         >
-          <img
-            className="object-cover w-48 rounded-t-lg h-44 sm:h-auto sm:w-72 sm:rounded-none sm:rounded-l-lg"
-            src={`https://www.cryptocompare.com${coin.IMAGEURL}`}
-            alt=""
-          />
+          <div className="relative h-72 w-72">
+            <Image
+              src={`https://www.cryptocompare.com${coin.IMAGEURL}`}
+              alt=""
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full"
+            />
+          </div>
           <div className="flex flex-col items-center justify-between p-5 leading-normal sm:items-start">
             <p className="mb-2 text-3xl font-bold tracking-tight text-white">{id}</p>
             <p className="mb-3 text-2xl font-normal text-yellow-400">{coin.PRICE}</p>

@@ -16,6 +16,21 @@ describe('Coins', () => {
     cleanup();
   });
 
+  const contextValue = {
+    coins: [
+      {
+        CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' },
+        DISPLAY: { USD: { PRICE: '$2,000', CHANGEPCT24HOUR: '10' } },
+        RAW: { USD: { CHANGEPCT24HOUR: '10', LASTUPDATE: '15000000' } },
+      },
+      {
+        CoinInfo: { FullName: 'Ethereum', Name: 'ETH' },
+        DISPLAY: { USD: { PRICE: '$1,000', CHANGEPCT24HOUR: '-10' } },
+        RAW: { USD: { CHANGEPCT24HOUR: '-10', LASTUPDATE: '15500000' } },
+      },
+    ],
+  };
+
   it('should render Coins Component', async () => {
     render(<Coins />);
 
@@ -23,31 +38,26 @@ describe('Coins', () => {
   });
 
   it('should render a list of Coins', () => {
-    const contextValue = {
-      coins: [
-        { CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' } },
-        { CoinInfo: { FullName: 'Ethereum', Name: 'ETH' } },
-      ],
-    };
-
     render(
       <Context.Provider value={contextValue}>
         <Coins />
       </Context.Provider>,
     );
 
-    const name1 = screen.getByText(/bitcoin/i);
-    const name2 = screen.getByText(/ethereum/i);
+    contextValue.coins.forEach(coin => {
+      const name = screen.getByText(coin.CoinInfo.FullName);
+      const title = screen.getByTitle(coin.CoinInfo.FullName);
 
-    expect(name1).toBeInTheDocument();
-    expect(name2).toBeInTheDocument();
+      expect(name).toBeTruthy();
+      expect(title).toBeInTheDocument();
+    });
   });
 
   it('should call page details when ckick in Link', () => {
-    const contextValue = { coins: [{ CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' } }] };
+    const context = { coins: [{ CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' } }] };
 
     render(
-      <Context.Provider value={contextValue}>
+      <Context.Provider value={context}>
         <Coins />
       </Context.Provider>,
     );

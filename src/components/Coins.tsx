@@ -1,4 +1,5 @@
 import moment from 'moment';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
 import ApiContext, { AppContextProps } from '../data/context/ApiContext';
@@ -29,15 +30,20 @@ export default function CoinsComponent() {
               <div
                 data-testid="list"
                 key={index}
-                className={`flex flex-col items-center ml-2 p-2 rounded-sm border shadow-sm sm:flex-row  border-gray-700 cursor-pointer`}
+                className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-700 cursor-pointer`}
               >
-                <img
-                  className="object-cover w-24 h-24 p-1 rounded-t-lg sm:h-24 sm:w-24 sm:rounded-none sm:rounded-l-lg"
-                  src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
-                  title={coin.CoinInfo?.FullName}
-                />
-                <div className="flex flex-col items-center justify-between leading-normal truncate w-42">
-                  <p className="mb-1 text-xs font-bold text-white md:text-md ">
+                <div className="relative h-24 w-24">
+                  <Image
+                    src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
+                    alt={coin.CoinInfo?.FullName}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-full"
+                    title={coin.CoinInfo?.FullName}
+                  />
+                </div>
+                <div className="relative items-end justify-between inline-block w-28 sm:w-20 ml-5 leading-normal">
+                  <p className="block mb-1 text-xs font-bold text-white truncate md:text-md ">
                     {coin.CoinInfo?.FullName}
                   </p>
                   <p className="mb-1 font-normal text-gray-400">{coin.DISPLAY?.USD.PRICE}</p>
