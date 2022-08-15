@@ -25,43 +25,43 @@ export default function CoinsComponent() {
     >
       {coins.map((coin: any, index: number) => {
         return (
-          <Link href={`/coin/${coin.CoinInfo?.Name}`} key={index}>
-            <a href={`/coin/${coin.CoinInfo?.Name}`}>
-              <div
-                data-testid="list"
-                key={index}
-                className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-700 cursor-pointer`}
-              >
-                <div className="relative h-24 w-24">
-                  <Image
-                    src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
-                    alt={coin.CoinInfo?.FullName}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                    title={coin.CoinInfo?.FullName}
-                  />
-                </div>
-                <div className="relative items-end justify-between inline-block w-28 sm:w-20 ml-5 leading-normal">
-                  <p className="block mb-1 text-xs font-bold text-white truncate md:text-md ">
-                    {coin.CoinInfo?.FullName}
-                  </p>
-                  <p className="mb-1 font-normal text-gray-400">{coin.DISPLAY?.USD.PRICE}</p>
-                  {coin.RAW?.USD.CHANGEPCT24HOUR < 0 ? (
-                    <p className="mb-1 text-sm font-bold text-red-600">
-                      {formatPercent.format(coin.DISPLAY?.USD.CHANGEPCT24HOUR / 100)} &darr;
-                    </p>
-                  ) : (
-                    <p className="mb-1 text-sm font-bold text-green-500">
-                      {formatPercent.format(coin.DISPLAY?.USD.CHANGEPCT24HOUR / 100)} &uarr;
-                    </p>
-                  )}
-                  <p className="mb-1 text-xs font-normal text-yellow-300 truncate w-42">
-                    {moment(coin.RAW?.USD.LASTUPDATE * 1000).fromNow()}
-                  </p>
-                </div>
+          <Link href={`/details/${coin.CoinInfo?.Name}`} key={index}>
+            {/* <a href={`/details/${coin.CoinInfo?.Name}`}> */}
+            <div
+              data-testid="list"
+              key={index}
+              className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-100 cursor-pointer`}
+            >
+              <div className="relative h-24 w-24">
+                <Image
+                  src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
+                  alt={coin.CoinInfo?.FullName}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-full"
+                  title={coin.CoinInfo?.FullName}
+                />
               </div>
-            </a>
+              <div className="relative items-end justify-between inline-block w-28 sm:w-20 ml-5 leading-normal">
+                <p className="block mb-1 text-xs font-bold text-white truncate md:text-md ">
+                  {coin.CoinInfo?.FullName}
+                </p>
+                <p className="mb-1 font-normal text-gray-400">{coin.DISPLAY?.USD.PRICE}</p>
+                {coin.RAW?.USD.CHANGEPCT24HOUR < 0 ? (
+                  <p className="mb-1 text-sm font-bold text-red-600">
+                    {formatPercent.format(coin.DISPLAY?.USD.CHANGEPCT24HOUR / 100)} &darr;
+                  </p>
+                ) : (
+                  <p className="mb-1 text-sm font-bold text-green-500">
+                    {formatPercent.format(coin.DISPLAY?.USD.CHANGEPCT24HOUR / 100)} &uarr;
+                  </p>
+                )}
+                <p className="mb-1 text-xs font-normal text-yellow-300 truncate w-42">
+                  {moment(coin.RAW?.USD.LASTUPDATE * 1000).fromNow()}
+                </p>
+              </div>
+            </div>
+            {/* </a> */}
           </Link>
         );
       })}

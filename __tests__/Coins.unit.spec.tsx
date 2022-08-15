@@ -6,8 +6,9 @@ import Context from '../src/data/context/ApiContext';
 jest.mock(
   'next/link',
   () =>
-    ({ children }) =>
-      children,
+    function Link({ href, children }) {
+      return <a href={href}> {children} </a>;
+    },
 );
 
 describe('Coins', () => {
@@ -53,7 +54,7 @@ describe('Coins', () => {
     });
   });
 
-  it('should call page details when ckick in Link', () => {
+  it('should call page details when ckick in Link', async () => {
     const context = { coins: [{ CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' } }] };
 
     render(
@@ -62,9 +63,13 @@ describe('Coins', () => {
       </Context.Provider>,
     );
 
-    const coinString = screen.getByRole('link');
-    fireEvent.click(coinString);
+    const coinLink = screen.getByRole('link');
 
-    expect(coinString).toHaveAttribute('href', '/coin/BTC');
+    await fireEvent.click(coinLink);
+
+    // espero que a pagina de detalhes seja chamada
+
+    expect(coinLink).toHaveAttribute('href', '/details/BTC');
+    // expect(coinLink).toHaveBeenCalledTimes(1);
   });
 });

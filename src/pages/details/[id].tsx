@@ -3,16 +3,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Layout from '../../components/template/Layout';
 
-export default function Coin({ coin }) {
+export default function Coin({ coin, id }) {
   // get 'id' from url
   const router = useRouter();
-  const { id } = router.query;
+  //const { id } = router.query;
   // console.log(router.query);
   const overview = `https://www.cryptocompare.com/coins/${id}/overview`;
   //
   return (
     <Layout>
-      <div className="mt-10 sm:mt-1">
+      <div className="mt-10 sm:mt-1" data-testid="coin-details">
         <a
           href={overview}
           target="_blank"
@@ -28,7 +28,10 @@ export default function Coin({ coin }) {
               className="rounded-full"
             />
           </div>
-          <div className="flex flex-col items-center justify-between p-5 leading-normal sm:items-start">
+          <div
+            className="flex flex-col items-center justify-between p-5 leading-normal sm:items-start"
+            data-testid="coin"
+          >
             <p className="mb-2 text-3xl font-bold tracking-tight text-white">{id}</p>
             <p className="mb-3 text-2xl font-normal text-yellow-400">{coin.PRICE}</p>
             <p className="mb-3 text-2xl font-normal text-gray-400">{coin.CIRCULATINGSUPPLY}</p>
@@ -65,11 +68,14 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${id}&tsyms=${currency}`,
   );
   const data = await response.json();
-  // console.log(data.DISPLAY);
   const coins = data.DISPLAY[id][currency];
+  //
+  // console.log(coins);
+  //
   return {
     props: {
       coin: coins,
+      id,
     },
   };
 };

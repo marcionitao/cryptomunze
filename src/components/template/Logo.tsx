@@ -11,12 +11,13 @@ export default function Logo(props: LogoProps) {
   return (
     <div className="flex items-center justify-center">
       <Link href="/">
-        <div className="relative h-14 w-14 m-2" data-testid="image-logo">
+        <div className="relative h-14 w-14 m-2">
           <Image
+            data-testid="image-logo"
             src={props.src}
             alt={props.titulo}
             layout="fill"
-            objectFit="cover"
+            // objectFit="cover"
             className={'rounded-full cursor-pointer'}
           />
         </div>
