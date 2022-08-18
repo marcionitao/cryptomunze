@@ -1,88 +1,98 @@
+import moment from 'moment';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useContext } from 'react';
 import Layout from '../components/template/Layout';
+// import context
+import ApiContext from '../data/context/ApiContext';
 
 export default function List() {
+  //usando context
+  const { coins } = useContext(ApiContext);
+
+  const formatPercentConfig = {
+    style: 'percent',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  };
+
+  const formatCurrencyConfig = {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  };
+
+  const formatCurrency = new Intl.NumberFormat('en-US', formatCurrencyConfig);
+  const formatPercent = new Intl.NumberFormat('en-US', formatPercentConfig);
+
   return (
     <div>
       <Layout>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-400">
-            <thead className="text-sm uppercase text-yellow-400 border-b border-gray-700">
+          <table className="w-full text-sm text-left text-gray-400" data-testid="table-list">
+            <thead className="text-sm text-white uppercase border-b border-gray-700 ">
               <tr>
-                <th scope="col" className="px-6 py-3">
-                  Product name
+                <th scope="col" className="px-6 flex justify-center">
+                  #
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  Color
+                <th scope="col" className="px-6">
+                  Coin name
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6">
                   Price
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  <span className="sr-only">Edit</span>
+                <th scope="col" className="px-6">
+                  Change % 24hs
+                </th>
+                <th scope="col" className="px-6 ">
+                  Last update
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-white whitespace-nowrap"
-                >
-                  Apple MacBook Pro 17
-                </th>
-                <td className="px-6 py-4">Sliver</td>
-                <td className="px-6 py-4">Laptop</td>
-                <td className="px-6 py-4">$2999</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-white whitespace-nowrap"
-                >
-                  Microsoft Surface Pro
-                </th>
-                <td className="px-6 py-4">White</td>
-                <td className="px-6 py-4">Laptop PC</td>
-                <td className="px-6 py-4">$1999</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-white whitespace-nowrap"
-                >
-                  Magic Mouse 2
-                </th>
-                <td className="px-6 py-4">Black</td>
-                <td className="px-6 py-4">Accessories</td>
-                <td className="px-6 py-4">$99</td>
-                <td className="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
+              {coins.map((coin: any, index: number) => {
+                return (
+                  <Link href={`/details/${coin.CoinInfo?.Name}`} key={index}>
+                    <tr className="border-b border-gray-700 cursor-pointer">
+                      <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-700">
+                        <div className="relative w-7 h-7 flex justify-center">
+                          <Image
+                            src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
+                            alt={coin.CoinInfo?.FullName}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-full"
+                            title={coin.CoinInfo?.FullName}
+                          />
+                        </div>
+                      </td>
+                      <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-700">
+                        {coin.CoinInfo?.FullName}
+                      </td>
+                      <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-700">
+                        {formatCurrency.format(coin.RAW?.USD.PRICE)}
+                      </td>
+                      {coin.RAW?.USD.CHANGEPCT24HOUR < 0 ? (
+                        <td
+                          className={`px-6 py-2 text-red-600 whitespace-no-wrap flex justify-center`}
+                        >
+                          {formatPercent.format(coin.RAW?.USD.CHANGEPCT24HOUR / 100)} &darr;
+                        </td>
+                      ) : (
+                        <td
+                          className={`px-6 py-2 text-green-500 whitespace-no-wrap flex justify-center`}
+                        >
+                          {formatPercent.format(coin.RAW?.USD.CHANGEPCT24HOUR / 100)} &uarr;
+                        </td>
+                      )}
+                      <td className="px-6 py-2 text-yellow-300 whitespace-no-wrap border-b border-gray-700">
+                        {moment(coin.RAW?.USD.LASTUPDATE * 1000).fromNow()}
+                      </td>
+                    </tr>
+                  </Link>
+                );
+              })}
             </tbody>
           </table>
         </div>

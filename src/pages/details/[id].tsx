@@ -4,10 +4,6 @@ import { useRouter } from 'next/router';
 import Layout from '../../components/template/Layout';
 
 export default function Coin({ coin, id }) {
-  // get 'id' from url
-  const router = useRouter();
-  //const { id } = router.query;
-  // console.log(router.query);
   const overview = `https://www.cryptocompare.com/coins/${id}/overview`;
   //
   return (
