@@ -28,7 +28,7 @@ export default function CoinsComponent() {
   return (
     <div
       data-testid="coin-component"
-      className={`grid grid-cols-1 mt-10 sm:mt-1 sm:grid-cols-3 lg:grid-cols-5 gap-2`}
+      className={`grid grid-cols-1 mt-5 sm:mt-1 sm:grid-cols-3 lg:grid-cols-5 gap-2`}
     >
       {coins.map((coin: any, index: number) => {
         return (
@@ -36,7 +36,7 @@ export default function CoinsComponent() {
             <div
               data-testid="list"
               key={index}
-              className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-100 cursor-pointer`}
+              className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-200 cursor-pointer`}
             >
               <div className="relative w-24 h-24">
                 <Image

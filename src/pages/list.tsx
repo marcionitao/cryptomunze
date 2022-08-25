@@ -29,24 +29,24 @@ export default function List() {
   return (
     <div>
       <Layout>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-400" data-testid="table-list">
-            <thead className="text-sm text-white uppercase border-b border-gray-700 ">
+        <div className="relative mt-6 overflow-x-auto shadow-md sm:mt-0 sm:rounded-lg">
+          <table className="w-full text-sm text-gray-400" data-testid="table-list">
+            <thead className="text-xs text-white uppercase border-b border-gray-700 sm:text-sm ">
               <tr>
-                <th scope="col" className="px-6 flex justify-center">
+                <th scope="col" className="flex justify-center px-6">
                   #
                 </th>
                 <th scope="col" className="px-6">
-                  Coin name
+                  Coin
                 </th>
                 <th scope="col" className="px-6">
                   Price
                 </th>
-                <th scope="col" className="px-6">
-                  Change % 24hs
+                <th scope="col" className="px-6 whitespace-no-wrap">
+                  % 24h
                 </th>
-                <th scope="col" className="px-6 ">
-                  Last update
+                <th scope="col" className="px-6">
+                  Update
                 </th>
               </tr>
             </thead>
@@ -56,7 +56,7 @@ export default function List() {
                   <Link href={`/details/${coin.CoinInfo?.Name}`} key={index}>
                     <tr className="border-b border-gray-700 cursor-pointer">
                       <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-700">
-                        <div className="relative w-7 h-7 flex justify-center">
+                        <div className="relative flex justify-center w-7 h-7">
                           <Image
                             src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
                             alt={coin.CoinInfo?.FullName}
@@ -75,18 +75,18 @@ export default function List() {
                       </td>
                       {coin.RAW?.USD.CHANGEPCT24HOUR < 0 ? (
                         <td
-                          className={`px-6 py-2 text-red-600 whitespace-no-wrap flex justify-center`}
+                          className={`px-6 py-2 text-red-600 whitespace-no-wrap truncate flex justify-center`}
                         >
                           {formatPercent.format(coin.RAW?.USD.CHANGEPCT24HOUR / 100)} &darr;
                         </td>
                       ) : (
                         <td
-                          className={`px-6 py-2 text-green-500 whitespace-no-wrap flex justify-center`}
+                          className={`px-6 py-2 text-green-500 whitespace-no-wrap flex justify-center truncate`}
                         >
                           {formatPercent.format(coin.RAW?.USD.CHANGEPCT24HOUR / 100)} &uarr;
                         </td>
                       )}
-                      <td className="px-6 py-2 text-yellow-300 whitespace-no-wrap border-b border-gray-700">
+                      <td className="px-6 py-2 text-yellow-300 truncate border-b border-gray-700">
                         {moment(coin.RAW?.USD.LASTUPDATE * 1000).fromNow()}
                       </td>
                     </tr>

@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Layout from '../../components/template/Layout';
 
 export default function Coin({ coin, id }) {
@@ -8,7 +7,7 @@ export default function Coin({ coin, id }) {
   //
   return (
     <Layout>
-      <div className="mt-10 sm:mt-1" data-testid="coin-details">
+      <div className="mt-1 sm:mt-1" data-testid="coin-details">
         <a
           href={overview}
           target="_blank"

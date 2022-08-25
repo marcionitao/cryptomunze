@@ -38,14 +38,10 @@ describe('List', () => {
       </Context.Provider>,
     );
 
-    const coin_1 = screen.queryByText(contextValue.coins[0].CoinInfo.FullName).closest('td');
-    expect(coin_1.textContent).toEqual('Bitcoin');
+    const coinsNames = contextValue.coins.map(item => item.CoinInfo.FullName);
 
-    const coin_2 = screen.queryByText(contextValue.coins[1].CoinInfo.FullName).closest('td');
-    expect(coin_2.textContent).toEqual('Ethereum');
+    expect(coinsNames).toEqual(['Bitcoin', 'Ethereum']);
 
-    const row = screen.getAllByRole('row');
-    // espero que tenha 3 linhas na tabela (1 para cabeçalho e 2 para o primeiro item)
-    expect(row).toHaveLength(3);
+    expect(coinsNames).toHaveLength(2);
   });
 });

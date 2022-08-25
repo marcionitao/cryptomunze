@@ -29,6 +29,11 @@ describe('Coins', () => {
         DISPLAY: { USD: { PRICE: '$1,000', CHANGEPCT24HOUR: '-10' } },
         RAW: { USD: { CHANGEPCT24HOUR: '-10', LASTUPDATE: '15500000' } },
       },
+      {
+        CoinInfo: { FullName: 'Euro', Name: 'EUR' },
+        DISPLAY: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '25' } },
+        RAW: { USD: { CHANGEPCT24HOUR: '25', LASTUPDATE: '155000' } },
+      },
     ],
   };
 
@@ -45,13 +50,11 @@ describe('Coins', () => {
       </Context.Provider>,
     );
 
-    contextValue.coins.forEach(coin => {
-      const name = screen.getByText(coin.CoinInfo.FullName);
-      const title = screen.getByTitle(coin.CoinInfo.FullName);
+    const coinsNames = contextValue.coins.map(item => item.CoinInfo.FullName);
 
-      expect(name).toBeTruthy();
-      expect(title).toBeInTheDocument();
-    });
+    expect(coinsNames).toEqual(['Bitcoin', 'Ethereum', 'Euro']);
+
+    expect(coinsNames).toHaveLength(3);
   });
 
   it('should call page details when ckick in Link', async () => {
@@ -68,7 +71,6 @@ describe('Coins', () => {
     await fireEvent.click(coinLink);
 
     // espero que a pagina de detalhes seja chamada
-
     expect(coinLink).toHaveAttribute('href', '/details/BTC');
     // expect(coinLink).toHaveBeenCalledTimes(1);
   });
