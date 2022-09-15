@@ -22,17 +22,17 @@ describe('Coins', () => {
       {
         CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' },
         DISPLAY: { USD: { PRICE: '$2,000', CHANGEPCT24HOUR: '10' } },
-        RAW: { USD: { CHANGEPCT24HOUR: '10', LASTUPDATE: '15000000' } },
+        RAW: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '10', LASTUPDATE: '15000000' } },
       },
       {
         CoinInfo: { FullName: 'Ethereum', Name: 'ETH' },
         DISPLAY: { USD: { PRICE: '$1,000', CHANGEPCT24HOUR: '-10' } },
-        RAW: { USD: { CHANGEPCT24HOUR: '-10', LASTUPDATE: '15500000' } },
+        RAW: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '-10', LASTUPDATE: '15500000' } },
       },
       {
         CoinInfo: { FullName: 'Euro', Name: 'EUR' },
         DISPLAY: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '25' } },
-        RAW: { USD: { CHANGEPCT24HOUR: '25', LASTUPDATE: '155000' } },
+        RAW: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '25', LASTUPDATE: '155000' } },
       },
     ],
   };
@@ -58,7 +58,15 @@ describe('Coins', () => {
   });
 
   it('should call page details when ckick in Link', async () => {
-    const context = { coins: [{ CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' } }] };
+    const context = {
+      coins: [
+        {
+          CoinInfo: { FullName: 'Bitcoin', Name: 'BTC' },
+          DISPLAY: { USD: { PRICE: '$2,000', CHANGEPCT24HOUR: '10' } },
+          RAW: { USD: { PRICE: '$1,500', CHANGEPCT24HOUR: '10', LASTUPDATE: '15000000' } },
+        },
+      ],
+    };
 
     render(
       <Context.Provider value={context}>
@@ -72,6 +80,5 @@ describe('Coins', () => {
 
     // espero que a pagina de detalhes seja chamada
     expect(coinLink).toHaveAttribute('href', '/details/BTC');
-    // expect(coinLink).toHaveBeenCalledTimes(1);
   });
 });

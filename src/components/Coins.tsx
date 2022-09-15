@@ -9,6 +9,8 @@ export default function CoinsComponent() {
   const { coins }: AppContextProps = useContext(ApiContext);
   // const context: AppContextProps = useContext(ApiContext);
 
+  // console.log('coins contextValue', coins);
+
   const formatPercentConfig = {
     style: 'percent',
     minimumFractionDigits: 2,
@@ -32,40 +34,48 @@ export default function CoinsComponent() {
     >
       {coins.map((coin: any, index: number) => {
         return (
-          <Link href={`/details/${coin.CoinInfo?.Name}`} key={index}>
+          <Link href={`/details/${coin.CoinInfo.Name}`} key={index}>
             <div
               data-testid="list"
               key={index}
-              className={`flex flex-col justify-start items-center ml-2 p-2 mt-2 rounded-sm border shadow-sm sm:flex-row border-gray-200 cursor-pointer`}
+              className={`flex flex-col 
+                justify-start 
+                items-center ml-2 p-2 mt-2 
+                rounded-sm border shadow-sm 
+                sm:flex-row border-gray-200 
+                cursor-pointer
+              `}
             >
               <div className="relative w-24 h-24">
                 <Image
-                  src={`https://www.cryptocompare.com${coin.CoinInfo?.ImageUrl}`}
-                  alt={coin.CoinInfo?.FullName}
+                  src={`https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`}
+                  alt={coin.CoinInfo.FullName}
                   layout="fill"
                   objectFit="cover"
                   className="rounded-full"
-                  title={coin.CoinInfo?.FullName}
+                  title={coin.CoinInfo.FullName}
                 />
               </div>
-              <div className="relative items-end justify-between inline-block ml-5 leading-normal w-28 sm:w-20">
+              <div
+                className={`relative items-end justify-between inline-block ml-5 leading-normal w-28 sm:w-20`}
+              >
                 <p className="block mb-1 text-xs font-bold text-white truncate md:text-md ">
-                  {coin.CoinInfo?.FullName}
+                  {coin.CoinInfo.FullName}
                 </p>
                 <p className="mb-1 font-normal text-gray-400">
-                  {formatCurrency.format(coin.RAW?.USD.PRICE)}
+                  {formatCurrency.format(coin.RAW.USD.PRICE)}
                 </p>
-                {coin.RAW?.USD.CHANGEPCT24HOUR < 0 ? (
+                {coin.RAW.USD.CHANGEPCT24HOUR < 0 ? (
                   <p className="mb-1 text-sm font-bold text-red-600">
-                    {formatPercent.format(coin.RAW?.USD.CHANGEPCT24HOUR / 100)} &darr;
+                    {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)} &darr;
                   </p>
                 ) : (
                   <p className="mb-1 text-sm font-bold text-green-500">
-                    {formatPercent.format(coin.DISPLAY?.USD.CHANGEPCT24HOUR / 100)} &uarr;
+                    {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)} &uarr;
                   </p>
                 )}
                 <p className="mb-1 text-xs font-normal text-yellow-300 truncate w-42">
-                  {moment(coin.RAW?.USD.LASTUPDATE * 1000).fromNow()}
+                  {moment(coin.RAW.USD.LASTUPDATE * 1000).fromNow()}
                 </p>
               </div>
             </div>

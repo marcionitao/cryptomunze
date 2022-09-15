@@ -20,7 +20,7 @@ describe('MenuItems', () => {
     expect(link).toBeInTheDocument();
   });
 
-  it('should render the items from list of links', () => {
+  it('should render the items from list to home', () => {
     // renderiza o componente e passar props
     renderMenuItems();
 

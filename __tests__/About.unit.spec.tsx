@@ -17,12 +17,12 @@ describe('About', () => {
   it('should check button is clicked', () => {
     render(<About />);
 
-    // find testing button with fireEvent.
-    const button = screen.getByRole('link', { name: /Back to home/i });
+    const link = screen.getByRole('link', { name: /Back to home/i });
 
-    // expect button to be clicked
-    fireEvent.click(button);
+    fireEvent.click(link);
 
-    expect(button).toBeTruthy();
+    expect(link).toBeTruthy();
+    // expect when the link is clicked, return to home page
+    expect(link).toHaveAttribute('href', '/');
   });
 });

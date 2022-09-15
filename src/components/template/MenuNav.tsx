@@ -19,17 +19,17 @@ export default function MenuNav() {
         <MenuItems
           url="/"
           texto="Home"
-          className={router?.pathname == '/' ? `${itemAtivo}` : `${itemInativo}`}
+          className={router?.pathname === '/' ? `${itemAtivo}` : `${itemInativo}`}
         />
         <MenuItems
           url="/list"
           texto="List Coins"
-          className={router?.pathname == '/list' ? `${itemAtivo}` : `${itemInativo}`}
+          className={router?.pathname === '/list' ? `${itemAtivo}` : `${itemInativo}`}
         />
         <MenuItems
           url="/about"
           texto="About"
-          className={router?.pathname == '/about' ? `${itemAtivo}` : `${itemInativo}`}
+          className={router?.pathname === '/about' ? `${itemAtivo}` : `${itemInativo}`}
         />
       </ul>
       <MenuMobile />

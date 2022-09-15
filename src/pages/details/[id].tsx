@@ -1,9 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import { IconDown, IconUp } from '../../components/icons/myIcons';
 import Layout from '../../components/template/Layout';
 
-export default function Coin({ coin, id }) {
+export default function Coin({ id, image, price, change, mktcp, volume_24, supply }) {
   const overview = `https://www.cryptocompare.com/coins/${id}/overview`;
+
   //
   return (
     <Layout>
@@ -16,7 +18,7 @@ export default function Coin({ coin, id }) {
         >
           <div className="relative h-72 w-72">
             <Image
-              src={`https://www.cryptocompare.com${coin.IMAGEURL}`}
+              src={`https://www.cryptocompare.com${image}`}
               alt=""
               layout="fill"
               objectFit="cover"
@@ -28,16 +30,25 @@ export default function Coin({ coin, id }) {
             data-testid="coin"
           >
             <p className="mb-2 text-3xl font-bold tracking-tight text-white">{id}</p>
-            <p className="mb-3 text-2xl font-normal text-yellow-400">{coin.PRICE}</p>
-            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.CIRCULATINGSUPPLY}</p>
-            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.TOTALVOLUME24H}</p>
-            <p className="mb-3 text-2xl font-normal text-gray-400">{coin.MKTCAP}</p>
-            {/* ... */}
-            {coin.CHANGEPCT24HOUR < 0 ? (
-              <p className="mb-3 text-2xl font-bold text-red-600">{coin.CHANGEPCT24HOUR} &darr;</p>
+            <p className="mb-3 text-2xl font-normal text-yellow-400">{price}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{supply}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{volume_24}</p>
+            <p className="mb-3 text-2xl font-normal text-gray-400">{mktcp}</p>
+            {change < 0 ? (
+              <p
+                className="flex flex-row mb-3 text-2xl font-bold text-red-600"
+                data-testid="vermelho"
+              >
+                {change}
+                {IconDown}
+              </p>
             ) : (
-              <p className="mb-3 text-2xl font-bold text-green-500">
-                {coin.CHANGEPCT24HOUR} &uarr;
+              <p
+                className="flex flex-row mb-3 text-2xl font-bold text-green-500"
+                data-testid="verde"
+              >
+                {change}
+                {IconUp}
               </p>
             )}
           </div>
@@ -46,7 +57,6 @@ export default function Coin({ coin, id }) {
     </Layout>
   );
 }
-
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
@@ -63,14 +73,26 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${id}&tsyms=${currency}`,
   );
   const data = await response.json();
-  const coins = data.DISPLAY[id][currency];
   //
-  // console.log(coins);
+  //const coins = data.DISPLAY[id][currency];
+  const image = data.DISPLAY[id][currency].IMAGEURL;
+  const price = data.DISPLAY[id][currency].PRICE;
+  const supply = data.DISPLAY[id][currency].CIRCULATINGSUPPLY;
+  const volume_24 = data.DISPLAY[id][currency].TOTALVOLUME24H;
+  const mktcp = data.DISPLAY[id][currency].MKTCAP;
+  const change = data.DISPLAY[id][currency].CHANGEPCT24HOUR;
+  //
   //
   return {
     props: {
-      coin: coins,
+      // coin: coins,
       id,
+      image,
+      price,
+      supply,
+      volume_24,
+      mktcp,
+      change,
     },
   };
 };

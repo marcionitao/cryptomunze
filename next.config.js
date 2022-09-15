@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['www.cryptocompare.com'],
+    domains: ['www.cryptocompare.com', 'localhost'],
   },
 };

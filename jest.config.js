@@ -13,10 +13,13 @@ const customJestConfig = {
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', '<rootDir>/'],
   testEnvironment: 'jsdom',
+  coverageProvider: 'v8', // aqui era nix
   collectCoverageFrom: [
     '<rootDir>/src/components/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/data/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/pages/**/*.{js,jsx,ts,tsx}',
+    '!src/pages/_app.tsx',
+    '!src/data/base_api.ts',
   ],
   moduleNameMapper: {
     // Handle module aliases
