@@ -1,9 +1,9 @@
 name: Continuous Integration
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
   run-tests:
@@ -13,11 +13,11 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      # Setup do Job
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      # ./Setup do Job
-      - run: ls -la
+    # Setup do Job
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    # ./Setup do Job
+    - run: ls -la
