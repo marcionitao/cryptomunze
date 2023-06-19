@@ -63,7 +63,7 @@ describe('MenuNav', () => {
 
   it('should select menu item("List Coins"), check pathname: / and if className: itemInativo', async () => {
     // const { result } = renderHook(() => useRouter());
-    //
+
     act(() => {
       singletonRouter.push({
         pathname: '/list',
@@ -74,9 +74,7 @@ describe('MenuNav', () => {
         },
       });
     });
-
     render(<MenuNav />);
-
     await waitFor(() => {
       expect(singletonRouter).toMatchObject({
         pathname: '/list',

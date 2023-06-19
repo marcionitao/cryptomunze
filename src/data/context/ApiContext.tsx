@@ -1,32 +1,29 @@
-import { createContext, useEffect, useState } from 'react';
-import { myApi } from '../../data/base_api';
+import { createContext, useEffect, useState } from 'react'
+import { myApi } from '../../data/base_api'
 
 export interface AppContextProps {
-  coins: any;
+  coins: any
 }
-
 const ApiContext = createContext<AppContextProps>({
   coins: [],
-});
-
+})
 export function ApiProvider({ children }) {
-  const [coins, setCoins] = useState([]);
+  const [coins, setCoins] = useState([])
 
   useEffect(() => {
-    myApi().then(data => {
-      setCoins(data);
-    });
-  }, []);
+    myApi().then((data) => {
+      setCoins(data)
+    })
+  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
-      myApi().then(data => {
-        setCoins(data);
-      });
-    }, 10000);
-    return () => clearInterval(timer);
-  }, []);
-
+      myApi().then((data) => {
+        setCoins(data)
+      })
+    }, 10000)
+    return () => clearInterval(timer)
+  }, [])
   // criando um 'provider', ou seja, um provedor de dados usando a 'const AppContext' acima
   return (
     // o que foi criado em 'interface' deve ser refletido aqui
@@ -39,7 +36,7 @@ export function ApiProvider({ children }) {
       {/* <AppProvider>{props.children}</AppProvider> em outro componente */}
       {children}
     </ApiContext.Provider>
-  );
+  )
 }
 
-export default ApiContext;
+export default ApiContext

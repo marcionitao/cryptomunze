@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import Coins from '../components/Coins';
-import Layout from '../components/template/Layout';
+import Head from 'next/head'
+import Coins from '../components/Coins'
+import Layout from '../components/template/Layout'
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
         <Coins />
       </Layout>
     </div>
-  );
+  )
 }

@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",
+    "@rocketseat/eslint-config": "^1.2.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^8.0.0",

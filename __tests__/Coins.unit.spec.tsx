@@ -17,6 +17,8 @@ describe('Coins', () => {
     cleanup();
   });
 
+  const aa = jest.fn();
+
   const contextValue = {
     coins: [
       {

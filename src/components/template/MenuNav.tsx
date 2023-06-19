@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
-import Logo from './Logo';
-import MenuItems from './MenuItems';
-import MenuMobile from './MenuMobile';
+import { useRouter } from 'next/router'
+import Logo from './Logo'
+import MenuItems from './MenuItems'
+import MenuMobile from './MenuMobile'
 
 export default function MenuNav() {
   //
-  const router = useRouter();
-  const itemAtivo = 'text-yellow-50 border-b-4 border-yellow-500';
-  const itemInativo = 'text-indigo-300';
+  const router = useRouter()
+  const itemAtivo = 'text-yellow-50 border-b-4 border-yellow-500'
+  const itemInativo = 'text-indigo-300'
 
   //
   return (
@@ -19,20 +19,26 @@ export default function MenuNav() {
         <MenuItems
           url="/"
           texto="Home"
-          className={router?.pathname === '/' ? `${itemAtivo}` : `${itemInativo}`}
+          className={
+            router?.pathname === '/' ? `${itemAtivo}` : `${itemInativo}`
+          }
         />
         <MenuItems
           url="/list"
           texto="List Coins"
-          className={router?.pathname === '/list' ? `${itemAtivo}` : `${itemInativo}`}
+          className={
+            router?.pathname === '/list' ? `${itemAtivo}` : `${itemInativo}`
+          }
         />
         <MenuItems
           url="/about"
           texto="About"
-          className={router?.pathname === '/about' ? `${itemAtivo}` : `${itemInativo}`}
+          className={
+            router?.pathname === '/about' ? `${itemAtivo}` : `${itemInativo}`
+          }
         />
       </ul>
       <MenuMobile />
     </nav>
-  );
+  )
 }

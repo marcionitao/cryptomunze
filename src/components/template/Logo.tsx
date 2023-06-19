@@ -1,17 +1,17 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface LogoProps {
-  className?: string;
-  titulo: string;
-  src: string;
+  className?: string
+  titulo: string
+  src: string
 }
 
 export default function Logo(props: LogoProps) {
   return (
     <div className="flex items-center justify-center">
-      <Link href="/">
-        <div className="relative h-14 w-14 m-2">
+      <Link href="/" passHref>
+        <div className="relative m-2 h-14 w-14">
           <Image
             data-testid="image-logo"
             src={props.src}
@@ -22,9 +22,9 @@ export default function Logo(props: LogoProps) {
           />
         </div>
       </Link>
-      <Link href="/">
+      <Link href="/" passHref>
         <h1 className="text-2xl text-white cursor-pointer">{props.titulo}</h1>
       </Link>
     </div>
-  );
+  )
 }

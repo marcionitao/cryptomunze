@@ -1,36 +1,39 @@
-import moment from 'moment';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useContext } from 'react';
-import Layout from '../components/template/Layout';
+import moment from 'moment'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useContext } from 'react'
+import Layout from '../components/template/Layout'
 // import context
-import ApiContext from '../data/context/ApiContext';
+import ApiContext from '../data/context/ApiContext'
 
 export default function List() {
-  //usando context
-  const { coins } = useContext(ApiContext);
+  // usando context
+  const { coins } = useContext(ApiContext)
 
   const formatPercentConfig = {
     style: 'percent',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  };
+  }
 
   const formatCurrencyConfig = {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  };
+  }
 
-  const formatCurrency = new Intl.NumberFormat('en-US', formatCurrencyConfig);
-  const formatPercent = new Intl.NumberFormat('en-US', formatPercentConfig);
+  const formatCurrency = new Intl.NumberFormat('en-US', formatCurrencyConfig)
+  const formatPercent = new Intl.NumberFormat('en-US', formatPercentConfig)
 
   return (
     <div>
       <Layout>
         <div className="relative mt-6 overflow-x-auto shadow-md sm:mt-0 sm:rounded-lg">
-          <table className="w-full text-sm text-gray-400" data-testid="table-list">
+          <table
+            className="w-full text-sm text-gray-400"
+            data-testid="table-list"
+          >
             <thead className="text-xs text-white uppercase border-b border-gray-700 sm:text-sm ">
               <tr>
                 <th scope="col" className="flex justify-center px-6">
@@ -80,13 +83,19 @@ export default function List() {
                       <td
                         className={`px-6 py-2 text-red-600 whitespace-no-wrap truncate flex justify-center`}
                       >
-                        {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)} &darr;
+                        {formatPercent.format(
+                          coin.RAW.USD.CHANGEPCT24HOUR / 100,
+                        )}{' '}
+                        &darr;
                       </td>
                     ) : (
                       <td
                         className={`px-6 py-2 text-green-500 whitespace-no-wrap flex justify-center truncate`}
                       >
-                        {formatPercent.format(coin.RAW.USD.CHANGEPCT24HOUR / 100)} &uarr;
+                        {formatPercent.format(
+                          coin.RAW.USD.CHANGEPCT24HOUR / 100,
+                        )}{' '}
+                        &uarr;
                       </td>
                     )}
                     <td className="px-6 py-2 text-yellow-300 truncate border-b border-gray-700">
@@ -104,12 +113,12 @@ export default function List() {
                     </td>
                   </tr>
                   // </Link>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
       </Layout>
     </div>
-  );
+  )
 }

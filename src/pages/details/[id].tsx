@@ -6,7 +6,6 @@ import Layout from '../../components/template/Layout';
 export default function Coin({ id, image, price, change, mktcp, volume_24, supply }) {
   const overview = `https://www.cryptocompare.com/coins/${id}/overview`;
 
-  //
   return (
     <Layout>
       <div className="mt-1 sm:mt-1" data-testid="coin-details">
